@@ -1,0 +1,43 @@
+{
+  "name": "ubytovani_v2",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "classnames": "^2.2.6",
+    "html-loader": "^0.5.5",
+    "html-react-parser": "^0.6.1",
+    "jest": "^23.6.0",
+    "npm-watch": "^0.5.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-dropzone": "^8.0.3",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2"
+  },
+  "jest": {
+    "automock": false,
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js|jsx)$"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "test": "jest",
+    "watch": "watch 'npm run build'"
+  }
+}
