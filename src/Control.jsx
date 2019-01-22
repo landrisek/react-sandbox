@@ -1,4 +1,4 @@
-import {Autocomplete, Checkbox, Info, Paginator, Password, RadioList, SelectBox, Text, TextArea, Warning} from './Components.jsx'
+import {Autocomplete, Checkbox, Info, Link, Paginator, Password, RadioList, SelectBox, Text, TextArea, Warning} from './Components.jsx'
 import {Email, Equal, Phone, Required, Message, Minimum, Submit} from './Validators.jsx'
 import React, {Component} from 'react'
 import {Upload} from './Upload.jsx'
@@ -80,6 +80,9 @@ export class Control extends Component {
     Info(state) {
         return Info(state)
     }
+    Link(props, state) {
+        return Link(props, state, this.submit.bind(this))
+    }
     Message(state) {
         return Message(state)
     }
@@ -105,26 +108,29 @@ export class Control extends Component {
         return Required(this.constructor.name, props, state)
     }
     onFetch() { }
+    onUpdate(state) {
+        return state
+    }
     SelectBox(props, state) {
         return SelectBox(props, state, this.change.bind(this))
     }
     submit(event) {
         event.preventDefault()
+        var id = event.target.getAttribute('data-id')
+        this.setState({[id]: true})
         fetch(this.props.data._state,
             {body: JSON.stringify(this.state), headers: {Accept: 'application/json','Content-Type': 'application/json'}, method: 'POST'}).then(
-               response => response.json()).then(data => { this.setState(data) })
+               response => response.json()).then(state => { state[id] = false 
+                                                           this.setState(state) })
     }
-    Submit(props) {
-        return Submit(this.constructor.name, props, this.submit.bind(this))
+    Submit(props, state) {
+        return Submit(this.constructor.name, props, state, this.submit.bind(this))
     }
     Text(props, state) {
         return Text(props, state, this.change.bind(this))
     }
     TextArea(props, state) {
         return TextArea(props, state, this.change.bind(this))
-    }
-    update(state) {
-        return state
     }
     Upload(props, state) {
         var files = []

@@ -53,13 +53,14 @@ export function Required(id, props, state) {
     }
 }
 
-export function Submit(id, props, onClick) {
+export function Submit(id, props, state, onClick) {
     for(var key in INVALID[id]) {
         return
     }
-    return <input className={props.className ? props.className : 'submit button'}
+    console.log(state)
+    return <input className={state ? 'waiting' : 'submit button'}
                   data-id={props.id}
                   onClick={onClick}
-                  value={props.label}
+                  value={state ? '                 ' : props.label}
                   type={'button'} />
 }

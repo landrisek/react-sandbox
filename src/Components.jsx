@@ -31,6 +31,7 @@ export function Checkbox(props, state, onChange) {
     return <label>
         <input checked={'1' == state}
                data-id={props.id}
+               className={props.className ? props.className : ''}
                onChange={onChange}
                type={'checkbox'}
                value={state} />{props.label}
@@ -40,6 +41,16 @@ export function Checkbox(props, state, onChange) {
 export function Info(message) {
     return <span className={'tipsy-help'} original-title={message}><img alt={message} src={'/assets/images/info.png'} /></span>
 }
+
+export function Link(props, state, onClick) {
+    return <a className={props.className ? props.className : ''}
+              data-id={props.id}
+              href={state.href ? state.href : 'javascript:;'}
+              onClick={onClick}
+              title={state.title}>{state.value}</a>
+
+}
+
 
 export function Paginator(props, state, onClick) {
     var pages = []
